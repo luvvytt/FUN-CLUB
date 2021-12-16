@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <Button
+        android:id="@+id/NewFriendsBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_bg_logout"
+        android:includeFontPadding="false"
+        android:text="New Friends"
+        android:textColor="#ffffff"
+        android:textSize="16sp" />
+
+    <ListView
+        android:id="@+id/friends_listview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:transcriptMode="normal"
+        android:layout_weight="1"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"
+        >
+
+    </ListView>
+
+
+
+
+
+</LinearLayout>
