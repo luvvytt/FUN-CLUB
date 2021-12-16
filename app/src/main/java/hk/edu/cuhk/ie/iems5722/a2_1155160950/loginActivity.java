@@ -49,6 +49,7 @@ import okhttp3.Response;
  * 登录界面activity
  */
 public class loginActivity extends AppCompatActivity implements View.OnClickListener {
+    private String user_name;
 
     private static final String TAG = "login";
 
@@ -71,6 +72,9 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
 
     private boolean isGooglePlayAvailable = false;
     private String token = "";
+
+    public loginActivity() {
+    }
 
 
     @Override
@@ -236,13 +240,14 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         protected void onPostExecute(String status) {
             super.onPostExecute(status);
             if (status.equals("OK")) {
-                Toast.makeText(loginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(loginActivity.this, MainActivity.class);
-//                if (!user_id_intent.equals("")) {
-//                    Log.d("user_id", user_id_intent);
-////                    intent.putExtra("user_id", user_id_intent);
-//                }
+
+                Intent intent = new Intent(loginActivity.this, NavigationActivity.class);
+                intent.putExtra("user_name",user_name);
+
+
+
                 startActivity(intent);
+
             } else if (status.equals("ERROR")) {
                 Toast.makeText(loginActivity.this, "用户名或密码有错，请重新输入", Toast.LENGTH_SHORT).show();
             }
@@ -275,6 +280,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
                 results = br.readLine();
                 json = new JSONObject(results);
                 status = json.getString("status");
+                user_name = json.getString("user_name");
             } catch (Exception e) {
                 e.printStackTrace();
             }

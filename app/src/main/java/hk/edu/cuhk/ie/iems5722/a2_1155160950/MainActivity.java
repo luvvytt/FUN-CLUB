@@ -33,6 +33,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     MyTask mTask;
+    private String user_name;
     private List<Chatroom> ChatroomList = new ArrayList<>();
 
 
@@ -47,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
         actionBar.setIcon(R.drawable.list);
-
-
+        Intent intent = getIntent();
+        user_name = intent.getStringExtra("user_name");
         mTask = new MyTask();
         mTask.execute();
         final ListView listView = (ListView) findViewById(R.id.mainactivity_listview);
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
                         ChatActivity.class);
                 intent.putExtra("roomid",chatroom.id);
                 intent.putExtra("roomname",chatroom.text);
+                intent.putExtra("user_name",user_name);
 
 
                 startActivity(intent);

@@ -44,6 +44,7 @@ public class ChatActivity extends AppCompatActivity {
     private ArrayList<InputText> inputTextList = new ArrayList<>();
     private ArrayList<InputText> inputTextListTemp = new ArrayList<>();
     private ArrayList<InputText> inputTextListTemp2 = new ArrayList<>();
+    private String user_name;
 
     private InputTextAdapter arrayAdapter;
     private ListView listView;
@@ -53,7 +54,6 @@ public class ChatActivity extends AppCompatActivity {
     private int current_page = 1;
 
 
-//    private InputTextAdapter arrayAdapter = new InputTextAdapter(ChatActivity.this, inputTextList);
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -76,6 +76,7 @@ public class ChatActivity extends AppCompatActivity {
         Intent intent = getIntent();
         roomid = intent.getIntExtra("roomid", 0);
         String roomname = intent.getStringExtra("roomname");
+        user_name = intent.getStringExtra("user_name");
 
         textInput = findViewById(R.id.send_text);
         ActionBar actionBar = getSupportActionBar();
@@ -106,14 +107,9 @@ public class ChatActivity extends AppCompatActivity {
                         // 判断滚动到顶部
 
                         if (listView.getFirstVisiblePosition() == 0) {
-                            System.out.println("on the top");
                             current_page += 1;
                             Load_more = new chatroom_Task();
                             Load_more.execute(roomid, PULL_UP_LOAD, current_page);
-                            System.out.println("currentpage=" + current_page);
-                            System.out.println("count=" + listView.getCount());
-//                            int posi = listView.getFirstVisiblePosition();
-//                            listView.setSelection(posi);
                             listView.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
@@ -121,10 +117,6 @@ public class ChatActivity extends AppCompatActivity {
                                     listView.setSelection(5);
                                 }
                             }, 500);
-
-//                            listView.setTranscriptMode(ListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
-//
-
 
                         }
 
@@ -150,17 +142,12 @@ public class ChatActivity extends AppCompatActivity {
                 if (!TextUtils.isEmpty(text)) {
                     mSend = new Send_message();
                     String strroomid = String.valueOf(roomid);
-                    mSend.execute(strroomid, text);
+                    mSend.execute(strroomid, text,user_name);
                     current_page = 1;
 
                     listView.setSelection(listView.getBottom()); //回到底部
                     textInput.setText("");
 
-//                    String time = getTime();
-//                    InputText inputText = new InputText(text, time);
-//                    inputTextList.add(inputText);
-//                    textInput.setText("");
-//                    arrayAdapter.notifyDataSetInvalidated();
                 } else {
                     Toast.makeText(ChatActivity.this, "you need to type in something!", Toast.LENGTH_SHORT).show();
                 }
@@ -316,9 +303,6 @@ public class ChatActivity extends AppCompatActivity {
                     arrayAdapter.notifyDataSetInvalidated();
 
 
-//                    inputTextList.addAll(inputTextListTemp);
-//                    inputTextListTemp.removeAll(inputTextList);
-//                    arrayAdapter.notifyDataSetChanged();
 
 
                 }
@@ -335,6 +319,7 @@ public class ChatActivity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
+
             // 执行前显示提示
         }
 
@@ -351,7 +336,7 @@ public class ChatActivity extends AppCompatActivity {
 //                StringBuilder sb = new StringBuilder();
                 String chatroom_id = strings[0];
                 String userid = "1155160950";
-                String name = "Saxon";
+                String name = strings[2];
                 String message = strings[1];
 //
                 requestUrl = String.format(requestUrl, chatroom_id, userid,name,message);
@@ -360,8 +345,6 @@ public class ChatActivity extends AppCompatActivity {
                 connection.setRequestMethod("POST");// 设置可向服务器输出connection.setDoOutput(true);// 打开连接
                 connection.connect();// 打开连接后，向服务端写要提交的参数// 参数格式：“name=asdasdas&age=123123”
                 int response = connection.getResponseCode();
-//               OutputStream os = connection.getOutputStream();
-//                os.write(sb.toString().getBytes());
                 InputStream is = null;
                 is = connection.getInputStream();
 // Convert the InputStream into a string

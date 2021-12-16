@@ -38,7 +38,7 @@ public class InputTextAdapter extends ArrayAdapter<InputText> {
             System.out.println("temp"+temp);
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.item_text, parent, false);
-            if (temp.equals("GGbond")) {
+            if (temp.equals("qwe")) {
                 viewHolder.input_text = (TextView) convertView.findViewById(R.id.tvText);
                 viewHolder.time = (TextView) convertView.findViewById(R.id.tvTime);
                 viewHolder.name = (TextView) convertView.findViewById(R.id.tvName);
@@ -50,7 +50,6 @@ public class InputTextAdapter extends ArrayAdapter<InputText> {
                 String t = inputText.time.substring(inputText.time.length() - 5, inputText.time.length());
                 viewHolder.time.setText(t);
                 viewHolder.name.setText(name);
-                System.out.println("1");
 
             } else {
                 viewHolder.input_text = (TextView) convertView.findViewById(R.id.tvText_L);
@@ -64,7 +63,6 @@ public class InputTextAdapter extends ArrayAdapter<InputText> {
                 String t = inputText.time.substring(inputText.time.length() - 5, inputText.time.length());
                 viewHolder.time.setText(t);
                 viewHolder.name.setText(name);
-                System.out.println("2");
 
             }
             // Cache the viewHolder object inside the fresh view
