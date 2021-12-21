@@ -229,8 +229,7 @@ public class PrivateChatActivity extends AppCompatActivity {
             socket.disconnect();
             socket.off();
         }
-        super.onDestroy();
-    }
+        super.onDestroy(); }
 
 
     private Emitter.Listener onUpdateMessage = new Emitter.Listener() {
