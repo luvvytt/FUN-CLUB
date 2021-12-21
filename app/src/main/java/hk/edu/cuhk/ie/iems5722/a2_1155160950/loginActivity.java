@@ -8,11 +8,6 @@ import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import com.google.firebase.iid.FirebaseInstanceId;
-
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,10 +15,13 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.firebase.messaging.FirebaseMessaging;
-
 
 import org.json.JSONObject;
 
@@ -39,10 +37,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
@@ -72,6 +66,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
 
     private boolean isGooglePlayAvailable = false;
     private String token = "";
+    public String MyName = "";
 
     public loginActivity() {
     }
@@ -133,6 +128,7 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         } else if (intent.getStringExtra("user_id") != null) {
             account = intent.getStringExtra("user_id");
             pwd = intent.getStringExtra("user_pwd");
+
             Log.d("register", account);
             editText_user_email.setText(account);
             editText_user_pw.setText(pwd);

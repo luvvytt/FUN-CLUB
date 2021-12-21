@@ -44,6 +44,10 @@ dependencies {
     implementation 'com.squareup.okio:okio:1.17.4'
     implementation "com.google.firebase:firebase-iid"
     implementation 'com.google.firebase:firebase-core:16.0.0'
-
+    implementation ('io.socket:socket.io-client:1.0.0') {
+// excluding org.json which is provided by Android exclude group:
+        exclude group: 'org.json', module: 'json'
+    }
+    implementation 'com.squareup.okhttp3:okhttp:4.9.2'
 
 }

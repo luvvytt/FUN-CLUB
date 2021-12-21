@@ -10,12 +10,17 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import static hk.edu.cuhk.ie.iems5722.a2_1155160950.NavigationActivity.MyName;
+
 public class InputTextAdapter extends ArrayAdapter<InputText> {
     // View lookup cache
+
+
     private static class ViewHolder {
         TextView input_text;
         TextView time;
         TextView name;
+
     }
 
     public InputTextAdapter(Context context, ArrayList<InputText> texts) {
@@ -32,13 +37,14 @@ public class InputTextAdapter extends ArrayAdapter<InputText> {
 
 
 
+
             // If there's no view to re-use, inflate a brand new view for row
             viewHolder = new ViewHolder();
             String temp = inputText.name;
             System.out.println("temp"+temp);
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.item_text, parent, false);
-            if (temp.equals("qwe")) {
+            if (temp.equals(MyName)) {
                 viewHolder.input_text = (TextView) convertView.findViewById(R.id.tvText);
                 viewHolder.time = (TextView) convertView.findViewById(R.id.tvTime);
                 viewHolder.name = (TextView) convertView.findViewById(R.id.tvName);

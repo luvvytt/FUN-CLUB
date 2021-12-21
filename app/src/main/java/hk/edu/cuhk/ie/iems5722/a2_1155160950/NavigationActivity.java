@@ -1,20 +1,20 @@
 package hk.edu.cuhk.ie.iems5722.a2_1155160950;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.Toast;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class NavigationActivity extends AppCompatActivity {
 
     private String user_name;
+    public static String MyName = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +25,9 @@ public class NavigationActivity extends AppCompatActivity {
         actionBar.setTitle("Main Page");
         Intent intent = getIntent();
         user_name = intent.getStringExtra("user_name");
+        MyName = user_name;
+
+
         Toast.makeText(NavigationActivity.this, "Welcome! " + user_name, Toast.LENGTH_SHORT).show();
 
 

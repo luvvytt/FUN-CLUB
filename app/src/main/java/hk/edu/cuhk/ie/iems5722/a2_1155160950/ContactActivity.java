@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -43,6 +44,21 @@ public class ContactActivity extends AppCompatActivity {
         user_name = intent.getStringExtra("user_name");
         mTask = new getFriendsListTask();
         mTask.execute();
+
+        final ListView listView = (ListView) findViewById(R.id.friends_listview);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Friend friend = FriendList.get(position);
+                Intent intent = new Intent(ContactActivity.this,
+                        PrivateChatActivity.class);
+                intent.putExtra("target_name",friend.name);
+                intent.putExtra("user_name",user_name);
+
+
+                startActivity(intent);
+            }
+        });
 
         ((Button) findViewById(R.id.NewFriendsBtn)).setOnClickListener(new View.OnClickListener() {
             @Override
