@@ -51,6 +51,16 @@ public class NavigationActivity extends AppCompatActivity {
 
 
         });
+        ((Button) findViewById(R.id.GameBtn)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent contactintent = new Intent(NavigationActivity.this, TictactoeActivity.class);
+                contactintent.putExtra("user_name",user_name);
+                startActivity(contactintent);
+            }
+
+
+        });
 
 
 

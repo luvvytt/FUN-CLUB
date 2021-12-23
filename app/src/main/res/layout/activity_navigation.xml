@@ -33,7 +33,18 @@
         android:textColor="#ffffff"
         android:textSize="16sp" />
 
-
+    <Button
+        android:id="@+id/GameBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="180dp"
+        android:background="@drawable/btn_bg_logout"
+        android:includeFontPadding="false"
+        android:text="Game"
+        android:textColor="#ffffff"
+        android:textSize="16sp" />
 
 
 
