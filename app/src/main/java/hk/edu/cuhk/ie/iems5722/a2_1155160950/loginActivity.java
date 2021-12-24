@@ -21,7 +21,6 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONObject;
 
@@ -135,7 +134,8 @@ public class loginActivity extends AppCompatActivity implements View.OnClickList
         }
 
         //获取token
-        token = FirebaseMessaging.getInstance().getToken().getResult();
+        //token = FirebaseMessaging.getInstance().getToken().getResult();
+        token = "token";
         System.out.println("token"+token);
 
         login.setOnClickListener(this);

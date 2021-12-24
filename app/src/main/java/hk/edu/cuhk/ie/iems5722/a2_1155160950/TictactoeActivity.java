@@ -41,6 +41,7 @@ public class TictactoeActivity extends AppCompatActivity {
 
 
 
+
     public void playerTap(View view) {
         ImageView img = (ImageView) view;
         if (gameActive && isMyTurn){
@@ -74,6 +75,8 @@ public class TictactoeActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle("Tictactoe Game");
+        int[] gameState = {2, 2, 2, 2, 2, 2, 2, 2, 2};
+        counter = 0;
         Intent intent = getIntent();
         user_name = intent.getStringExtra("user_name");
         my_name = findViewById(R.id.my_name);
@@ -296,10 +299,11 @@ public class TictactoeActivity extends AppCompatActivity {
             try {
                 JSONObject data = (JSONObject) args[0];
                 String player_name = data.getString("user_name");
-                counter ++;
+
                 System.out.println("count:"+counter);
                 int index = data.getInt("index");
                 if (player_name.equals(user_name)){
+                    counter ++;
                     if (isMyTurn) {
                         isMyTurn = false; //如果是自己更新了，要等对方更新了才能下下一步棋
                     }
@@ -350,6 +354,7 @@ public class TictactoeActivity extends AppCompatActivity {
                 }
 
                 else {
+                    counter ++;
                     if (!isMyTurn) {
                         isMyTurn = true; //对方的棋子更新
                     }
